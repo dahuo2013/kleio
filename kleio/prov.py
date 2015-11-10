@@ -80,7 +80,7 @@ class Resource(rdflib.resource.Resource):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(bundle, self.node(id))
+        super(Resource, self).__init__(bundle, self.node(id))
 
     @staticmethod
     def node(id):
@@ -142,7 +142,7 @@ class Entity(Resource):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Entity, self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Entity)
 
     def set_was_influenced_by(self, resource):
@@ -545,7 +545,7 @@ class Bundle(Entity):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Bundle, self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Bundle)
 
 
@@ -558,7 +558,7 @@ class Collection(Entity):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Collection,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Collection)
 
     def set_had_member(self, entity):
@@ -594,7 +594,7 @@ class EmptyCollection(Collection):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(EmptyCollection,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.EmptyCollection)
 
     def set_had_member(self, entity):
@@ -618,7 +618,7 @@ class Plan(Entity):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Plan,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Plan)
 
 
@@ -632,7 +632,7 @@ class Location(Resource):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Location, self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Location)
 
 
@@ -645,7 +645,7 @@ class Activity(Resource):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Activity,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Activity)
 
     def set_influenced(self, entity):
@@ -984,7 +984,7 @@ class Agent(Resource):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Agent,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Agent)
 
     def set_was_influenced_by(self, resource):
@@ -1068,7 +1068,7 @@ class Person(Agent):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Person,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Person)
 
 
@@ -1080,7 +1080,7 @@ class Organization(Agent):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Organization,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Organization)
 
 
@@ -1092,7 +1092,7 @@ class SoftwareAgent(Agent):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(SoftwareAgent,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.SoftwareAgent)
 
 
@@ -1107,7 +1107,7 @@ class InstantaneousEvent(Resource):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(InstantaneousEvent,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.InstantaneousEvent)
 
     def set_at_location(self, location):
@@ -1167,7 +1167,7 @@ class Influence(Resource):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Influence,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Influence)
 
     def set_had_role(self, role):
@@ -1212,7 +1212,7 @@ class ActivityInfluence(Influence):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(ActivityInfluence,self).__init__(id=id, bundle=bundle)
 
     def set_activity(self, activity):
         """
@@ -1242,7 +1242,7 @@ class AgentInfluence(Influence):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(AgentInfluence,self).__init__(id=id, bundle=bundle)
 
     def set_agent(self, agent):
         """
@@ -1272,7 +1272,7 @@ class EntityInfluence(Influence):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id, bundle=bundle)
+        super(EntityInfluence,self).__init__(id, bundle=bundle)
 
     def set_entity(self, entity):
         """
@@ -1302,7 +1302,7 @@ class Generation(InstantaneousEvent, ActivityInfluence):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Generation,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Generation)
 
 
@@ -1317,7 +1317,7 @@ class Start(InstantaneousEvent, EntityInfluence):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id, bundle=bundle)
+        super(Start,self).__init__(id, bundle=bundle)
         self.add_type(PROV.Start)
 
 
@@ -1332,7 +1332,7 @@ class End(InstantaneousEvent, EntityInfluence):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(End,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.End)
 
 
@@ -1346,7 +1346,7 @@ class Invalidation(InstantaneousEvent, ActivityInfluence):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Invalidation,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Invalidation)
 
 
@@ -1358,7 +1358,7 @@ class Communication(ActivityInfluence):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Communication,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Communication)
 
 
@@ -1371,7 +1371,7 @@ class Usage(InstantaneousEvent, EntityInfluence):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Usage,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Usage)
 
 
@@ -1384,7 +1384,7 @@ class Derivation(EntityInfluence):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Derivation,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Derivation)
 
     def set_had_usage(self, usage):
@@ -1428,7 +1428,7 @@ class Revision(Derivation):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Revision,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Revision)
 
 
@@ -1446,7 +1446,7 @@ class PrimarySource(Derivation):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(PrimarySource,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.PrimarySource)
 
 
@@ -1459,7 +1459,7 @@ class Quotation(Derivation):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Quotation,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Quotation)
 
 
@@ -1475,7 +1475,7 @@ class Delegation(AgentInfluence):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Delegation,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Delegation)
 
 
@@ -1489,7 +1489,7 @@ class Association(AgentInfluence):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Association,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Association)
 
     def set_had_plan(self, plan):
@@ -1520,7 +1520,7 @@ class Attribution(AgentInfluence):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Attribution,self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Attribution)
 
 
@@ -1533,5 +1533,5 @@ class Role(Resource):
     """
 
     def __init__(self, id=None, bundle=default_graph):
-        super().__init__(id=id, bundle=bundle)
+        super(Role, self).__init__(id=id, bundle=bundle)
         self.add_type(PROV.Role)
