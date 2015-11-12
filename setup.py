@@ -1,5 +1,14 @@
 from setuptools import setup
 import re
+import os
+
+# Read in ReStructured txt for long description
+# Can be README.rst can be generated using pandoc
+# pandoc --from=markdown --to=rst README.md -o README.rst 
+try:
+    description = open('README.rst').read()
+except (IOError, ImportError):
+    description = open('README.md').read()
 
 
 def find_version(filename):
