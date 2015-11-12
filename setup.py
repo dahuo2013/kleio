@@ -1,11 +1,5 @@
 from setuptools import setup
 import re
-import pypandoc
-
-try:
-    description = pypandoc.convert('README.md', 'rst')
-except (IOError, ImportError):
-    description = open('README.md').read()
 
 
 def find_version(filename):
